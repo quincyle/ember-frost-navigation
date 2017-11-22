@@ -1,27 +1,28 @@
-import Ember from 'ember'
+  import Ember from 'ember'
+  const {Controller, Logger, inject} = Ember
 
-export default Ember.Controller.extend({
-  fiberplantNav: false,
-  fiberplantNavTemplate: 'nav-fiberplant',
-  adminNav: false,
-  adminNavTemplate: 'nav-admin',
-  navigation: false,
+  export default Controller.extend({
 
-  actions: {
-    openFiberplantNav () {
-      this.set('fiberplantNav', true)
+    frostNavigation: inject.service(),
+    notifier: inject.service(),
+
+    _notify (type, message) {
+      this.get('notifier').addNotification({
+        message,
+        type,
+        autoClear: true,
+        clearDuration: 1200
+      })
     },
 
-    openAdminNav () {
-      this.set('adminNav', true)
-    },
+    actions: {
+      myAction (item) {
+        this._notify(
+          'success',
+          `Item '${item.action}' fired`
+        )
 
-    openRoute: function (route) {
-      this.transitionToRoute(route)
-    },
-
-    tabSelected (tab) {
-      this.set('selectedTab', tab)
+        Logger.log(item)
+      }
     }
-  }
-})
+  })

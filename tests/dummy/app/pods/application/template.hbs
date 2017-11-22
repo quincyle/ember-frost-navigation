@@ -1,29 +1,23 @@
-<div class='frost-application-bar dummy-nav'>
-  {{#frost-link 'dashboard' class='branding'}}
-    {{frost-icon icon='pinpoint/nav/logo'}}
-  {{/frost-link}}
+{{frost-notifier}}
+<div class='frost-application'>
+  <!-- BEGIN-SNIPPET template -->
+  {{frost-navigation
+    hook='my-navigation'
+    navActions=(hash
+      myAction=(action 'myAction')
+    )
+    logo=(component 'custom-logo'
+      hook='my-custom-logo'
+      class='nav-category navigation-logo'
+    )
+    menu=(component 'user-menu'
+      class='nav-category frost-navigation-user'
+      username='Username'
+    )
+  }}
+  <!-- END-SNIPPET -->
 
-  {{#frost-button class='navigation' on-click=(action 'openFiberplantNav') priority="" size=""}}
-      <div class='icon-text'>
-        {{frost-icon icon='pinpoint/nav/fiberplant'}}
-          <div class='text'>Fiberplant</div>
-      </div>
-  {{/frost-button}}
-
-  {{#frost-button class='navigation' on-click=(action 'openAdminNav') priority="" size=""}}
-      <div class='icon-text'>
-        {{frost-icon icon='pinpoint/nav/admin'}}
-          <div class='text'>Administration</div>
-      </div>
-  {{/frost-button}}
-
-  {{#frost-button class='icon user' priority="" size=""}}
-    {{frost-icon icon='pinpoint/nav/user'}}
-  {{/frost-button}}
-</div>
-
-{{liquid-modal}}
-
-<div class='dummy-content'>
-  {{outlet}}
+  <div class='frost-application-content'>
+    {{outlet}}
+  </div>
 </div>
