@@ -7,16 +7,18 @@
 # dependencies
 /node_modules
 /bower_components
-yarn.lock
 
 # misc
 /.sass-cache
+/.idea
 /connect.lock
 /coverage/*
 /libpeerconnection.log
 npm-debug.log*
 testem.log
 coverage.json
-.idea
-/visual-acceptance
-/typing
+.DS_Store
+/typings/*
+.vscode
+**.ember-try
+yarn.lock
