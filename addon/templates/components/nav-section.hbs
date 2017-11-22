@@ -1,0 +1,34 @@
+<div class='nav-section-header' style={{lineStyle}}>
+  {{section.title}}
+  {{#if section.actions}}
+    <div class='nav-section-actions-link' {{action setView section}}>
+      <div class='sub'>Actions</div>
+      {{frost-icon
+        class='actions-icon flip'
+        hook=(concat hookPrefix '-section-actions-icon')
+        hookQualifiers=hookQualifiers
+        icon='chevron'
+      }}
+    </div>
+  {{/if}}
+</div>
+<div class='body'>
+  {{#each section.routes as |item index|}}
+    {{#if item.action}}
+      {{! TODO: update below to use hookQualifiers with index instead of putting it on hook }}
+      {{nav-action
+        hook=(concat hookPrefix '-action-' index)
+        hookQualifiers=hookQualifiers
+        item=item
+      }}
+    {{else}}
+      {{! TODO: update below to use hookQualifiers with index instead of putting it on hook }}
+      {{nav-route
+        hook=(concat hookPrefix '-route-' index)
+        hookQualifiers=hookQualifiers
+        options=item
+      }}
+    {{/if}}
+  {{/each}}
+</div>
+{{yield}}
